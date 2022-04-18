@@ -52,6 +52,8 @@ public class ProductDaoImpl implements ProductDao{
 
  	public int getTotalCount(Search search) throws Exception {
 		// TODO Auto-generated method stub
+ 		int i = sqlSession.selectOne("ProductMapper.getTotalCount", search);
+ 		System.out.println("DAO에서 친히 부릅니다. 너의 토탈 카운트  값은 ? " + i);
 		return sqlSession.selectOne("ProductMapper.getTotalCount", search);
 	}
 
