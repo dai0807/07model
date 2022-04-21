@@ -27,44 +27,44 @@ public class ProductServiceImpl implements ProductService{
 		}
 		// findTrannNo 단위 테스트는 곧 하기를 바람 
 	
-	public ProductServiceImpl() {
-		System.out.println(this.getClass());
- 	}
- 	public void addProduct(Product product) throws Exception {
-  		System.out.println("product service impp :  " + product  );
- 		productDao.insertProduct(product ) ;
-  		
+		public ProductServiceImpl() {
+			System.out.println(this.getClass());
+	 	}
+	 	public void addProduct(Product product) throws Exception {
+	  		System.out.println("product service impp :  " + product  );
+	 		productDao.insertProduct(product ) ;
+	  		
+		}
+
+	 	public void updateProduct(Product product) throws Exception {
+	  		productDao.updateProduct(product);
+		}
+
+	 	public Product getProduct(int prodNo) throws Exception {
+	  		System.out.println("서비스 다오 getProduct  :: " + prodNo );
+	  		System.out.println( "나와라 " +productDao.getProduct(prodNo));
+			return productDao.getProduct(prodNo);
+		}
+
+	 	public Map<String, Object> getProductList(Search search) throws Exception {
+			// DAO에서 List랑 get TotalCount 받아서 Map 넣어서 던지기 
+	 		List<Product> list = productDao.getProductList(search) ;
+	 		int totalCount 		=  productDao.getTotalCount(search) ;
+//	 		System.out.println("totalCount ::" + totalCount );
+//	 		System.out.println("list ::" + list );
+
+	 		Map<String,Object>map = new HashMap<String, Object>() ;
+	 		map.put("list", list ) ;
+	 		map.put("totalCount", new Integer(totalCount) ) ;
+
+	 		return map;
+	 		
+	 
+		}
+
+ 	 	public int findTrandtranNo(int prodNo) throws Exception {
+			// TODO Auto-generated method stub
+			return productDao.findTrandtranNo(prodNo);
+		}
+
 	}
-
- 	public void updateProduct(Product product) throws Exception {
-  		productDao.updateProduct(product);
-	}
-
- 	public Product getProduct(int tranNo) throws Exception {
-  		
-		return productDao.getProduct(tranNo);
-	}
-
- 	public Map<String, Object> getProductList(Search search) throws Exception {
-		// DAO에서 List랑 get TotalCount 받아서 Map 넣어서 던지기 
- 		List<Product> list = productDao.getProductList(search) ;
- 		int totalCount 		=  productDao.getTotalCount(search) ;
-// 		System.out.println("totalCount ::" + totalCount );
-// 		System.out.println("list ::" + list );
-
- 		Map<String,Object>map = new HashMap<String, Object>() ;
- 		map.put("list", list ) ;
- 		map.put("totalCount", new Integer(totalCount) ) ;
-
- 		return map;
- 		
- 
-	}
-
-//아직 단위 테스트 안함 
- 	public int findTrandtranNo(int prodNo) throws Exception {
-		// TODO Auto-generated method stub
-		return productDao.findTrandtranNo(prodNo);
-	}
-
-}

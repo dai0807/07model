@@ -14,7 +14,7 @@ public interface ProductService {
 	public void updateProduct(Product product) throws Exception;
 
 	//제품 가져오기
-	public Product getProduct (int prod_no) throws Exception;
+	public Product getProduct (int prodNo) throws Exception;
 
 	//리스트 가져오기
 	public  Map<String, Object> getProductList(Search search)  throws Exception;

@@ -61,7 +61,7 @@ function history(){
 				<tr>
 					<td class="Depth03">
 					<!-- 	<a href="../product/addProductView.jsp;" target="rightFrame">판매상품등록</a> -->
-							<a href="/product/addProduct;" target="rightFrame">판매상품등록</a>
+							<a href="/product/addProduct" target="rightFrame">판매상품등록</a>
 					
 					</td>
 				</tr>
@@ -71,6 +71,17 @@ function history(){
 					</td>
 				</tr>
 				<tr>
+				
+				
+				<tr>
+					<td class="Depth03">
+						<a href="/purchase/listSale"  target="rightFrame">판매 상품 목록 </a>
+					</td>
+				</tr>
+				<tr>
+				
+				
+				
 					<td class="DepthEnd">&nbsp;</td>
 				</tr>
 			</table>
@@ -91,7 +102,7 @@ function history(){
 			<c:if test="${ !empty user && user.role == 'user'}">
 			<tr>
 				<td class="Depth03">
-					<a href="/listPurchase"  target="rightFrame">구매이력조회 구현 안함 </a>
+					<a href="/purchase/listPurchase"  target="rightFrame">구매이력조회   </a>
 				</td>
 			</tr>
 			</c:if>

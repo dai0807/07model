@@ -6,9 +6,10 @@ import java.util.Map;
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
 
+
 public interface ProductDao {
 
-	public   Product getProduct(int prod_no) throws Exception 	 ; // 제품 찾기
+	public   Product getProduct(int prodNo) throws Exception 	 ; // 제품 찾기
 	
 	public  List<Product>getProductList (Search search) throws Exception  ; // 리스트 가져오기 
 	

@@ -8,7 +8,7 @@
 
 		
 	<resultMap id="productSelectMap" type="product">
-		<result property="prodNo" 				column="prod_no" 			jdbcType="NUMERIC"/>
+			<result property="prodNo" 				column="prod_no" 			jdbcType="NUMERIC"/>
 		<result property="prodName"				column="prod_name" 			jdbcType="VARCHAR" />
 		<result property="prodDetail" 			column="prod_detail" 		jdbcType="VARCHAR" />
 		<result property="manuDate" 			column="manufacture_day" 	jdbcType="VARCHAR" />
@@ -24,7 +24,7 @@
 	 <insert id ="addProduct" parameterType="product">
 		 INSERT
 			 INTO product	(prod_no , 		prod_name , prod_detail,	manufacture_day ,price,	image_file ,reg_date)
-			 VALUES			( seq_product_prod_no.nextval, #{prodName} ,#{prodDetail} ,  TO_DATE(#{manuDate},'YYYY-MM-DD')  , #{price} , #{fileName} , SYSDATE )
+			 VALUES			( seq_product_prod_no.nextval, #{prodName} ,#{prodDetail} ,  #{manuDate}  , #{price} , #{fileName} , SYSDATE )
 			  
 	 </insert>
 	 
@@ -36,7 +36,7 @@
 		SELECT
 		p.*, NVL(t.tran_status_code,'000') pro_tran_status_code  		
 		FROM product p, transaction t 
-		WHERE  t.prod_no   =   p.prod_no(+)  AND p.prod_no =  #{value}
+		WHERE  t.prod_no(+)   =   p.prod_no  AND p.prod_no =  #{value}
 	 </select> 
 	  <!-- SQL : 트랜코드 받기  아직 단위 테스트 안함 -->
 	 <select id ="getTrandCode"  parameterType="int" resultType="int">
@@ -50,7 +50,7 @@
 			 <set>
 			 prod_name 		= #{prodName}	,
 			 prod_detail 	= #{prodDetail}	,
-			 manufacture_day= TO_DATE(#{manuDate},'YYYY-MM-DD')	,
+			 manufacture_day= #{manuDate}	,
 			 price			= #{price} 		,
 			 image_file		= #{fileName}
 			 </set>
@@ -67,7 +67,7 @@
 		  					FROM		(	SELECT p.* ,  NVL(t.tran_status_code, '000')  pro_tran_status_code
 												FROM product p , transaction t
  													<where>
- 													 t.prod_no   =   p.prod_no(+)  
+ 												 p.prod_no =	 t.prod_no(+)    
 													<if test="searchCondition != null">
 																<if test="searchCondition == 0 and searchKeyword !='' ">
 														 			AND p.prod_no LIKE  LIKE '%' || #{searchKeyword} || '%'
@@ -94,9 +94,8 @@
 	  	FROM(	SELECT  p.* ,  NVL(t.tran_status_code, '000')  pro_tran_status_code
 						FROM product p , transaction t
  							<where>
- 													 t.prod_no   =   p.prod_no(+)  
-										
-										 <if test="searchCondition != null">
+ 												 p.prod_no =	 t.prod_no(+)    
+									 <if test="searchCondition != null">
 							
 										<if test="searchCondition == 0 and searchKeyword !='' ">
 								 		AND 	p.prod_no  LIKE '%' || #{searchKeyword} || '%'

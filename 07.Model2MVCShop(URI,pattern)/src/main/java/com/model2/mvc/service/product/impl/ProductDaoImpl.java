@@ -29,9 +29,9 @@ public class ProductDaoImpl implements ProductDao{
 		System.out.println(this.getClass());
 	}
 
-	public Product getProduct(int prod_no) throws Exception {
+	public Product getProduct(int prodNo) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("ProductMapper.getProduct" ,prod_no);
+ 		return sqlSession.selectOne("ProductMapper.getProduct" ,prodNo);
 	}
 
   	public List<Product> getProductList(Search search) throws Exception {
@@ -52,8 +52,6 @@ public class ProductDaoImpl implements ProductDao{
 
  	public int getTotalCount(Search search) throws Exception {
 		// TODO Auto-generated method stub
- 		int i = sqlSession.selectOne("ProductMapper.getTotalCount", search);
- 		System.out.println("DAO에서 친히 부릅니다. 너의 토탈 카운트  값은 ? " + i);
 		return sqlSession.selectOne("ProductMapper.getTotalCount", search);
 	}
 
